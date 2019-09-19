@@ -5,12 +5,8 @@
 	.globl	main
 	.type	main, @function
 main:
-.LFB0:
-	.cfi_startproc
 	movl	$4, %eax
 	ret
-	.cfi_endproc
-.LFE0:
 	.size	main, .-main
-	.ident	"GCC: (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0"
+	.ident	"GCC: (Ubuntu 8.3.0-6ubuntu1) 8.3.0"
 	.section	.note.GNU-stack,"",@progbits
