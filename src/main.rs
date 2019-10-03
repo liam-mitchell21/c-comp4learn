@@ -3,11 +3,12 @@
 extern crate regex;
 #[macro_use]
 extern crate lazy_static;
+mod rxtokens;
 
 use std::env;
 use std::fs;
-
-mod rxtokens;
+use regex::Regex;
+use rxtokens::*;
 
 fn main() {
   //take command line argument as filename
@@ -24,6 +25,14 @@ fn lex(f: &String) {
   //get file
   let contents = fs::read_to_string(f)
     .expect("ERROR, something went wrong reading the file");
-
-
+  
+  let matches: Vec<_> = TOKENS.matches(&contents).into_iter().collect();
+  
+  for m in matches {
+    println!("regex is {:?}", TKHASHMAP.get(&m));
+    let cmd = TKHASHMAP.get(&m);
+    let rex = Regex::new(cmd.unwrap()).unwrap();
+    let cap = rex.captures(&contents).unwrap();
+    println!("capture is {:?}", cap); 
+  }
 }
