@@ -32,7 +32,8 @@ fn lex(f: &String) {
     println!("regex is {:?}", TKHASHMAP.get(&m));
     let cmd = TKHASHMAP.get(&m);
     let rex = Regex::new(cmd.unwrap()).unwrap();
-    let cap = rex.captures(&contents).unwrap();
-    println!("capture is {:?}", cap); 
+    for caps in rex.captures_iter(&contents) {
+      println!("capture is {:?}", caps); 
+    }
   }
 }
